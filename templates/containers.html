@@ -1,0 +1,129 @@
+{% extends 'base.html' %}{% block content %}
+    <!--suppress HtmlFormInputWithoutLabel -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Containers</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Basic Form Elements
+                    </div>
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form id="UserCreationForm" method="post" action="{% url 'create_container' %}">
+                            {% csrf_token %}
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label>Container Name * </label>
+                                            <input type="text" class="form-control" name="container_name"
+                                                    maxlength="50" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Images *</label>
+                                            <select id="lg" class="form-control" name="image">
+                                                {% for image in images %}
+                                                    <option value="{{ image.id }}">{{ image.tags }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <!-- text input -->
+                                        <div class="form-group">
+                                            <label>Inner port * </label>
+                                            <input type="number" class="form-control" name="inner_port" required/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label>Outer Port *</label>
+                                            <input type="number" class="form-control" name="outer_port" required/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 submit-button">
+                                    <button type="submit" class=" btn btn-success">Create container</button>
+                                </div>
+
+                            </form>
+                        </div>
+                </div>
+                </div>
+                <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    List of containers
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover" id="imageList">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Name</th>
+                                                    <th>Ports</th>
+                                                    <th>Image</th>
+                                                    <th>Status</th>
+                                                    <th>Start</th>
+                                                    <th>Stop</th>
+                                                    <th>Delete</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for container in containers %}
+                                                <tr class="odd gradeX">
+                                                    <td>{{ container.short_id }}</td>
+                                                    <td>{{ container.name }}</td>
+                                                    <td>{{ container.ports }}</td>
+                                                    <td>{{ container.image.tags }}</td>
+                                                    <td {% if container.status == "running"%} style="color: green" {% endif %}  {% if container.status == "exited" %} style="color: red" {% endif %} {% if container.status == "create" %} style="color: #ffa500" {% endif %}>{{ container.status }}</td>
+                                                    <td><a href="{% url 'start_container' id=container.id %}" id="{{container.id}}"><i
+                                                    class="fa fa-play-circle"></i></a></td>
+                                                    <td><a href="{% url 'stop_container' id=container.id %}" id="{{container.id}}"><i
+                                                    class="fa fa-stop-circle-o"></i></a></td>
+                                                    <td><a href="{% url 'delete_container' id=container.name  %}" id="{{container.id}}"><i
+                                                    class="fa  fa-trash"></i></a></td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- /.panel-body -->
+                            </div>
+                            <!-- /.panel -->
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+            </div>
+        </div>
+        </div>
+
+
+{% endblock %}{% block js %}
+    <script>
+        $(document).ready(function () {
+            $('#imageList').DataTable({
+                responsive: true
+            });
+        });
+    </script>
+
+{% endblock %}
