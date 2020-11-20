@@ -30,6 +30,6 @@ urlpatterns = [
     path('get_image/', get_image, name="get_image"),
     path('previous_tag_list/<path:encoded_url>/', previous_tag_list, name="previous_tag_list"),
     path('next_tag_list/<path:encoded_url>/', next_tag_list, name="next_tag_list"),
-    path('pull_image/<str:rpnme>/<str:tag>/', pull_image, name="pull_image"),
+    path('pull_image/<str:rpnme>/<str:tag>/', pull_image_from_docker_hub, name="pull_image"),
 ]
 
