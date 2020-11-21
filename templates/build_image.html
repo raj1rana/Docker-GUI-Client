@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% block content %}
+    <div class="row row-optional" style="margin-top: 5%">
+            <div class="col-lg-12">
+                <h1 class="page-header">Build image</h1>
+                <h4 style="color: #b52b27">Paste the contents or write a docker file</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+
+                <div class="editor language-Dockerfile">
+
+                </div>
+            <br>
+                <a class="btn btn-info" onclick="senfFile">Create Image</a>
+
+        </div>
+    </div>
+
+
+
+{% endblock %}{% block js %}
+<script type="module" id="code">
+  import {CodeJar} from "https://medv.io/codejar/codejar.js?"
+  import {withLineNumbers} from "https://medv.io/codejar/linenumbers.js?"
+
+  const jar = new CodeJar(
+    document.querySelector(".editor"),
+    withLineNumbers(Prism.highlightElement)
+  )
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+{% endblock %}

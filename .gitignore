@@ -1,3 +1,5 @@
 /.idea/*
 /app/__pycache__/*
 /dockerclient/__pycache__/
+/ app/migrations/__pycache__/*
+__pycache__/

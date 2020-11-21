@@ -156,3 +156,8 @@ def pull_image_from_docker_hub(request, rpnme, tag):
     except Exception as e:
         messages.error(request, e)
         return HttpResponseRedirect(reverse('index'))
+
+
+def build_image(request):
+
+    return render(request, 'build_image.html')

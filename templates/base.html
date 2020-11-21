@@ -26,12 +26,13 @@
 
         <!-- Custom Fonts -->
         <link href="{% static '/css/font-awesome.min.css'%}" rel="stylesheet" type="text/css">
-
+         <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/themes/prism-twilight.min.css" rel="stylesheet" />
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+
         <![endif]-->
     </head>
     <body>
@@ -77,9 +78,13 @@
                                 <!-- /input-group -->
                             </li>
                             <li>
-                                <a href="{% url 'index' %}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                            </li><li>
-                                <a href="{% url 'create_container' %}"><i class="fa fa-server fa-fw"></i> containers</a>
+                                <a href="{% url 'index' %}" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'create_container' %}" class="active "><i class="fa fa-server fa-fw"></i> containers</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'build_image' %}" class="active"><i class="fa fa-fire fa-fw"></i> Build you Image</a>
                             </li>
 
                         </ul>
