@@ -1,4 +1,4 @@
-# Docker-GUI-Client
+# Docker-GUI-Client V2
 Docker GUI client
 
 # requirements 
